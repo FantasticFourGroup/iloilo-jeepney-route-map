@@ -1,4 +1,5 @@
 import "./style.css";
+import { landmarks } from "./src/constants";
 
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
@@ -10,26 +11,29 @@ const map = L.mapquest.map("map", {
 
 map.addControl(L.mapquest.control());
 
-L.mapquest.directions().route({
-	start: "Baldoza Land Transport Terminal, Lapuz, Iloilo City, Iloilo",
-	end: "Burgos St, Iloilo City Proper, Iloilo City, Iloilo",
+const directions = L.mapquest.directions();
+
+directions.route({
+	start: landmarks.BALDOZA_TERMINAL.coordinates,
+	end: landmarks.GEN_HUGHES_ST.coordinates,
 	waypoints: [
-		"Lopez Jaena St., La Paz, Iloilo City, Iloilo",
-		"Jereos St., Iloilo City, Iloilo",
-		"Javellana Ext. Rd, Jaro, Iloilo City, Iloilo",
-		"Commission Civil St., Jaro, Iloilo City, Iloilo",
-		"Burgos St., La Paz, Iloilo City, Iloilo",
-		"Huervana St., La Paz, Iloilo City, Iloilo",
-		"Rizal St., La Paz, Iloilo City, Iloilo",
-		"Luna St., La Paz, Iloilo City, Iloilo",
-		"Bonifacio Dr., Iloilo City Proper, Iloilo City, Iloilo",
-		"Gen. Luna St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Jalandoni St., Iloilo City Proper, Iloilo City, Iloilo",
-		"De Leon St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Fuentes St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Ledesma St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Iznart St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Rizal St., Iloilo City Proper, Iloilo City, Iloilo",
-		"Gen. Hughes St., Iloilo City Proper, Iloilo City, Iloilo",
+		landmarks.LOPEZ_JAENA_ST.coordinates,
+		landmarks.JEREOS_ST.coordinates,
+		landmarks.JAVELLANA_EXT.coordinates,
+		landmarks.COMMISSION_CIVIL_ST.coordinates,
+		landmarks.BURGOS_ST.coordinates,
+		landmarks.HUERVANA_ST.coordinates,
 	],
+});
+
+directions.setLayerOptions({
+	startMarker: {
+		draggable: false,
+	},
+	endMarker: {
+		draggable: false,
+	},
+	waypointMarker: {
+		draggable: false,
+	},
 });
