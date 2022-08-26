@@ -1,20 +1,27 @@
-const removeRouteMarkers = (map, response) => {
+import { createMarker } from "./actions";
+
+const removeRouteMarkers = (response, map) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
 
 	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
 		createStartMarker: (location, _) => {
 			return L.marker(location.latLng, { icon: icoEmpty });
 		},
-		createWaypointMarker: (location, _) => {
+		createEndMarker: (location, _) => {
 			return L.marker(location.latLng, { icon: icoEmpty });
 		},
-		createEndMarker: (location, _) => {
+		createWaypointMarker: (location, _) => {
 			return L.marker(location.latLng, { icon: icoEmpty });
 		},
 	});
 
 	new DirectionsLayerWithEmptyMarkers({
 		directionsResponse: response,
+		routeRibbon: {
+			color: "#18BE00",
+			opacity: 1.0,
+			showTraffic: false,
+		},
 	}).addTo(map);
 };
 
@@ -27,36 +34,25 @@ export const createIloiloMap = (error, response) => {
 		zoom: 14,
 	});
 
-	removeRouteMarkers(map, response);
+	removeRouteMarkers(response, map);
 
-	L.control
-		.layers({
-			Map: mapLayer,
-		})
-		.addTo(map);
+	const startMarker = createMarker("start");
+	const endMarker = createMarker("end");
 
-	const drawnItems = L.featureGroup().addTo(map);
+	startMarker.addTo(map);
+	endMarker.addTo(map);
 
-	map.addControl(
-		new L.Control.Draw({
-			edit: {
-				featureGroup: drawnItems,
-				poly: {
-					allowIntersection: false,
-				},
-			},
-			draw: {
-				polygon: {
-					allowIntersection: false,
-					showArea: true,
-				},
-			},
-		})
-	);
+	map.on("click", function (event) {
+		let coordinates = [];
+		const marker = event.target;
+		for (let prop in marker._layers) {
+			if (!marker._layers.hasOwnProperty(prop)) continue;
 
-	map.on(L.Draw.Event.CREATED, function (event) {
-		var layer = event.layer;
-
-		drawnItems.addLayer(layer);
+			if (marker._layers[prop].hasOwnProperty("_iconContainer")) {
+				let latLong = marker._layers[prop]._latlng;
+				coordinates.push(latLong);
+			}
+		}
+		document.getElementById("coordinates").innerText = `${coordinates}`;
 	});
 };
