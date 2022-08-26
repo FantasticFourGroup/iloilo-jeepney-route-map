@@ -1,6 +1,25 @@
+const removeRouteMarkers = (map, response) => {
+	const icoEmpty = L.icon({ iconUrl: "a" });
+
+	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
+		createStartMarker: (location, _) => {
+			return L.marker(location.latLng, { icon: icoEmpty });
+		},
+		createWaypointMarker: (location, _) => {
+			return L.marker(location.latLng, { icon: icoEmpty });
+		},
+		createEndMarker: (location, _) => {
+			return L.marker(location.latLng, { icon: icoEmpty });
+		},
+	});
+
+	new DirectionsLayerWithEmptyMarkers({
+		directionsResponse: response,
+	}).addTo(map);
+};
+
 export const createIloiloMap = (error, response) => {
 	const mapLayer = L.mapquest.tileLayer("map");
-	const icoEmpty = L.icon({ iconUrl: "a" });
 
 	const map = L.mapquest.map("map", {
 		center: [10.7202, 122.5621],
@@ -8,32 +27,7 @@ export const createIloiloMap = (error, response) => {
 		zoom: 14,
 	});
 
-	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
-		createStartMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, {}).bindPopup("Start");
-		},
-
-		createWaypointMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, {}).bindPopup("Waypoint");
-		},
-
-		createEndMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, {}).bindPopup("End");
-		},
-		createStartMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, { icon: icoEmpty });
-		},
-		createWaypointMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, { icon: icoEmpty });
-		},
-		createEndMarker: function (location, stopNumber) {
-			return L.marker(location.latLng, { icon: icoEmpty });
-		},
-	});
-
-	const directionsLayer = new DirectionsLayerWithEmptyMarkers({
-		directionsResponse: response,
-	}).addTo(map);
+	removeRouteMarkers(map, response);
 
 	L.control
 		.layers({

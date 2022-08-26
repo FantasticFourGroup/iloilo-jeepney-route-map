@@ -8,25 +8,10 @@ const directions = L.mapquest.directions();
 
 directions.route(
 	{
-		locations: [
-			landmarks.BALDOZA_TERMINAL.coordinates,
-			landmarks.LOPEZ_JAENA_ST.coordinates,
-			landmarks.JEREOS_ST.coordinates,
-			landmarks.JAVELLANA_EXT.coordinates,
-			landmarks.COMMISSION_CIVIL_ST.coordinates,
-			landmarks.BURGOS_ST.coordinates,
-			landmarks.HUERVANA_ST.coordinates,
-			landmarks.GEN_HUGHES_ST.coordinates,
-		],
+		locations: routes.LAPAZ_TO_CITY_PROPER_ROUTE,
 	},
 	createIloiloMap
 );
-
-directions.setLayerOptions({
-	waypointMarker: {
-		draggable: false,
-	},
-});
 
 directions.routeMatrix(
 	{
