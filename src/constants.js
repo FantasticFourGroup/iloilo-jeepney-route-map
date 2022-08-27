@@ -23,6 +23,15 @@ export const landmarks = {
 	HUERVANA_ST: {
 		coordinates: [10.710002315221114, 122.56960431178891],
 	},
+	BITO_ON: {
+		coordinates: [10.757649579489465, 122.5932535599162],
+	},
+	BURGOS_ST_V2: {
+		coordinates: [10.71152824570325, 122.57179327389626],
+	},
+	BURGOS_ST_V3: {
+		coordinates: [10.711671792640523, 122.5719776288044],
+	},
 };
 
 export const routes = {
@@ -35,5 +44,10 @@ export const routes = {
 		landmarks.BURGOS_ST.coordinates,
 		landmarks.HUERVANA_ST.coordinates,
 		landmarks.GEN_HUGHES_ST.coordinates,
+	],
+	BITO_ON_TO_LAPAZ: [
+		landmarks.BITO_ON.coordinates,
+		landmarks.BURGOS_ST_V2.coordinates,
+		landmarks.BURGOS_ST_V3.coordinates,
 	],
 };

@@ -42,17 +42,15 @@ export const createIloiloMap = (error, response) => {
 	startMarker.addTo(map);
 	endMarker.addTo(map);
 
-	map.on("click", function (event) {
-		let coordinates = [];
-		const marker = event.target;
-		for (let prop in marker._layers) {
-			if (!marker._layers.hasOwnProperty(prop)) continue;
+	console.log(response);
 
-			if (marker._layers[prop].hasOwnProperty("_iconContainer")) {
-				let latLong = marker._layers[prop]._latlng;
-				coordinates.push(latLong);
-			}
-		}
-		document.getElementById("coordinates").innerText = `${coordinates}`;
+	startMarker.on("moveend", (event) => {
+		const coordinates = event.target._latlng;
+		document.getElementById("start-coordinate").innerText = `${coordinates}`;
+	});
+
+	endMarker.on("moveend", (event) => {
+		const coordinates = event.target._latlng;
+		document.getElementById("end-coordinate").innerText = `${coordinates}`;
 	});
 };
