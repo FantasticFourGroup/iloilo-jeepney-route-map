@@ -6,6 +6,15 @@ export const createMarker = (markerType) => {
 		markerType == "start"
 			? L.latLng(landmarks.LOPEZ_JAENA_ST.coordinates)
 			: L.latLng(landmarks.GEN_HUGHES_ST.coordinates);
+
+	sessionStorage.setItem(
+		markerType,
+		JSON.stringify({
+			lat: coordinates.lat,
+			lng: coordinates.lng,
+		})
+	);
+
 	return L.mapquest.textMarker(coordinates, {
 		type: "marker",
 		draggable: true,

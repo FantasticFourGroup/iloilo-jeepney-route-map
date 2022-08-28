@@ -1,6 +1,7 @@
 import { createMarker } from "./actions";
+import { routes } from "./constants";
 
-const removeRouteMarkers = (response, map) => {
+const removeRouteMarkers = (response) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
 
 	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
@@ -15,14 +16,14 @@ const removeRouteMarkers = (response, map) => {
 		},
 	});
 
-	new DirectionsLayerWithEmptyMarkers({
+	return new DirectionsLayerWithEmptyMarkers({
 		directionsResponse: response,
 		routeRibbon: {
 			color: "#18BE00",
 			opacity: 1.0,
 			showTraffic: false,
 		},
-	}).addTo(map);
+	});
 };
 
 export const createIloiloMap = (error, response) => {
@@ -34,7 +35,7 @@ export const createIloiloMap = (error, response) => {
 		zoom: 14,
 	});
 
-	removeRouteMarkers(response, map);
+	removeRouteMarkers(response).addTo(map);
 
 	const startMarker = createMarker("start");
 	const endMarker = createMarker("end");
@@ -42,15 +43,33 @@ export const createIloiloMap = (error, response) => {
 	startMarker.addTo(map);
 	endMarker.addTo(map);
 
-	console.log(response);
-
 	startMarker.on("moveend", (event) => {
 		const coordinates = event.target._latlng;
 		document.getElementById("start-coordinate").innerText = `${coordinates}`;
+		sessionStorage.setItem(
+			"start",
+			JSON.stringify({
+				lat: coordinates.lat,
+				lng: coordinates.lng,
+			})
+		);
 	});
 
 	endMarker.on("moveend", (event) => {
 		const coordinates = event.target._latlng;
 		document.getElementById("end-coordinate").innerText = `${coordinates}`;
+		sessionStorage.setItem(
+			"end",
+			JSON.stringify({
+				lat: coordinates.lat,
+				lng: coordinates.lng,
+			})
+		);
+	});
+
+	document.getElementById("button").addEventListener("click", (event) => {
+		console.log(response.route.shape);
+		console.log(JSON.parse(sessionStorage.getItem("start")));
+		console.log(JSON.parse(sessionStorage.getItem("end")));
 	});
 };

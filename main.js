@@ -12,13 +12,3 @@ directions.route(
 	},
 	createIloiloMap
 );
-
-directions.routeMatrix(
-	{
-		locations: routes.LAPAZ_TO_CITY_PROPER_ROUTE,
-		options: {
-			allToAll: true,
-		},
-	},
-	(_, response) => console.log(response)
-);
