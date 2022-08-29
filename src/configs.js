@@ -68,8 +68,26 @@ export const createIloiloMap = (error, response) => {
 	});
 
 	document.getElementById("button").addEventListener("click", (event) => {
+		const { shapePoints } = response.route.shape;
+		console.log(response.route);
 		console.log(response.route.shape);
+
 		console.log(JSON.parse(sessionStorage.getItem("start")));
 		console.log(JSON.parse(sessionStorage.getItem("end")));
 	});
+
+	console.log(response);
+
+	const directions = L.mapquest.directions();
+	directions.route(
+		{
+			waypoints: routes.BITO_ON_TO_LAPAZ,
+		},
+		(error, response) => {
+			const layer = L.mapquest.directionsLayer({
+				directionsResponse: response,
+			});
+			console.log(response);
+		}
+	);
 };
