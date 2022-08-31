@@ -1,5 +1,7 @@
 import { distance, point, featureCollection, nearestPoint } from "@turf/turf";
 
+import { setupOnClick } from "./actions";
+
 export const downloadFile = (obj) => {
 	const data =
 		"text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
@@ -14,6 +16,7 @@ export const downloadFile = (obj) => {
 };
 
 export const getMarkerDetails = (start, end, data) => {
+	setupOnClick();
 	const transformedData = data.map((coord) => point([coord.lng, coord.lat]));
 	const points = featureCollection(transformedData);
 	const startDetails = nearestPoint(start, points);
@@ -32,12 +35,13 @@ export const getMarkerDetails = (start, end, data) => {
 		totalDistance += smallDistance;
 	}
 
-	console.log(totalDistance);
 	document.getElementById("block").insertAdjacentHTML(
 		"afterbegin",
 		/*html*/ `
-		<b>Distance: </b>${totalDistance}
-		<br><br>
-	`
+			<div id="details">
+				<b id="distance">Distance: </b>${totalDistance}
+				<br><br>
+			</div>
+		`
 	);
 };

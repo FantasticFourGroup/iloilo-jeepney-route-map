@@ -25,3 +25,9 @@ export const createMarker = (markerType) => {
 		},
 	});
 };
+
+export const setupOnClick = () => {
+	if (document.getElementById("details")) {
+		document.getElementById("details").remove();
+	}
+};
