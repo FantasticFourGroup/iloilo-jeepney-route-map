@@ -1,4 +1,3 @@
-import data from "./data.js";
 import { distance, point, featureCollection, nearestPoint } from "@turf/turf";
 
 export const downloadFile = (obj) => {
@@ -14,7 +13,7 @@ export const downloadFile = (obj) => {
 	container.appendChild(a);
 };
 
-export const getMarkerDetails = (start, end) => {
+export const getMarkerDetails = (start, end, data) => {
 	const transformedData = data.map((coord) => point([coord.lng, coord.lat]));
 	const points = featureCollection(transformedData);
 	const startDetails = nearestPoint(start, points);
@@ -24,13 +23,21 @@ export const getMarkerDetails = (start, end) => {
 
 	const subPoints = transformedData.slice(startIndex, endIndex + 1);
 
-	const directions = L.mapquest.directions();
-	directions.route(
-		{
-			waypoints: subPoints,
-		},
-		(error, response) => {
-			console.log(response);
-		}
+	let totalDistance = 0;
+
+	for (let i = startIndex; i < endIndex; i++) {
+		const first = point([data[i].lng, data[i].lat]);
+		const second = point([data[i + 1].lng, data[i + 1].lat]);
+		const smallDistance = distance(first, second);
+		totalDistance += smallDistance;
+	}
+
+	console.log(totalDistance);
+	document.getElementById("block").insertAdjacentHTML(
+		"afterbegin",
+		/*html*/ `
+		<b>Distance: </b>${totalDistance}
+		<br><br>
+	`
 	);
 };

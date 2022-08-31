@@ -46,7 +46,6 @@ export const createIloiloMap = (error, response) => {
 
 	startMarker.on("moveend", (event) => {
 		const coordinates = event.target._latlng;
-		document.getElementById("start-coordinate").innerText = `${coordinates}`;
 		sessionStorage.setItem(
 			"start",
 			JSON.stringify({
@@ -58,7 +57,6 @@ export const createIloiloMap = (error, response) => {
 
 	endMarker.on("moveend", (event) => {
 		const coordinates = event.target._latlng;
-		document.getElementById("end-coordinate").innerText = `${coordinates}`;
 		sessionStorage.setItem(
 			"end",
 			JSON.stringify({
@@ -69,17 +67,14 @@ export const createIloiloMap = (error, response) => {
 	});
 
 	document.getElementById("button").addEventListener("click", (event) => {
-		// const { shapePoints } = response.route.shape;
-		// console.log(response.route);
-		// console.log(response.route.shape);
-
 		const start = JSON.parse(sessionStorage.getItem("start"));
 		const end = JSON.parse(sessionStorage.getItem("end"));
+		const { shapePoints } = response.route.shape;
 
 		const startArray = [start.lng, start.lat];
 		const endArray = [end.lng, end.lat];
 
-		getMarkerDetails(startArray, endArray);
+		getMarkerDetails(startArray, endArray, shapePoints);
 	});
 
 	console.log(response);
