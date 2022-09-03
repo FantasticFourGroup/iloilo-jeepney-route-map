@@ -1,5 +1,6 @@
 import { createMarker } from "./actions";
-import { getRouteDistance, getFare } from "./helpers";
+import { getRouteDistance, getFare, getJeepRouteName } from "./helpers";
+import { routes } from "./constants";
 
 const removeRouteMarkers = (response) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
@@ -24,6 +25,34 @@ const removeRouteMarkers = (response) => {
 			showTraffic: false,
 		},
 	});
+};
+
+export const setSessionStorage = () => {
+	sessionStorage.setItem("jeepney", routes.LAPAZ_TO_CITY_PROPER_ROUTE.name);
+};
+
+export const setDOMActions = () => {
+	const routeDivs = ["first-route", "second-route", "third-route"];
+
+	routeDivs.forEach((routeDiv) => {
+		document.getElementById(routeDiv).addEventListener("click", () => {
+			const jeepneyType = getJeepRouteName(routeDiv);
+			const jeepDiv = document.getElementById("jeep-type");
+			jeepDiv.innerHTML = /*html*/ `
+				<b class="jeep-type">Jeepney: </b>${jeepneyType}
+			`;
+		});
+	});
+};
+
+export const setDOMValues = () => {
+	const jeepneyType = sessionStorage.getItem("jeepney");
+	document.getElementById("jeep-type").insertAdjacentHTML(
+		"beforeend",
+		/*html*/ `
+			${jeepneyType}
+		`
+	);
 };
 
 export const createIloiloMap = (error, response) => {
@@ -80,21 +109,23 @@ export const createIloiloMap = (error, response) => {
 			"regular",
 			Math.floor(totalDistance)
 		);
+		const jeepneyType = sessionStorage.getItem("jeepney");
 
 		document.getElementById("block").insertAdjacentHTML(
-			"afterbegin",
+			"beforeend",
 			/*html*/ `
 				<div id="details">
-					<b id="distance">Distance: </b>${Math.floor(totalDistance)}
-
-					<br><br>
-
-					<b id="distance">Fare: </b>${totalFare}
-					
-					<br><br>
+					<div class="detail">
+						<b class="distance">Distance: </b> ${Math.round(totalDistance * 100) / 100}
+					</div>
+					<div class="detail">
+						<b class="fare">Fare: </b> ${totalFare}
+					</div>
+					<div class="detail" id="jeep-type">
+						<b class="jeep-type">Jeepney: </b> ${jeepneyType}
+					</div>
 				</div>
 			`
 		);
 	});
-	console.log(response);
 };

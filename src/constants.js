@@ -35,21 +35,31 @@ export const landmarks = {
 };
 
 export const routes = {
-	LAPAZ_TO_CITY_PROPER_ROUTE: [
-		landmarks.BALDOZA_TERMINAL.coordinates,
-		landmarks.LOPEZ_JAENA_ST.coordinates,
-		landmarks.JEREOS_ST.coordinates,
-		landmarks.JAVELLANA_EXT.coordinates,
-		landmarks.COMMISSION_CIVIL_ST.coordinates,
-		landmarks.BURGOS_ST.coordinates,
-		landmarks.HUERVANA_ST.coordinates,
-		landmarks.GEN_HUGHES_ST.coordinates,
-	],
-	BITO_ON_TO_LAPAZ: [
-		landmarks.BITO_ON.coordinates,
-		landmarks.BURGOS_ST_V2.coordinates,
-		landmarks.BURGOS_ST_V3.coordinates,
-	],
+	LAPAZ_TO_CITY_PROPER_ROUTE: {
+		name: "LA PAZ - ILOILO CITY PROPER VIA ISATU",
+		path: [
+			landmarks.BALDOZA_TERMINAL.coordinates,
+			landmarks.LOPEZ_JAENA_ST.coordinates,
+			landmarks.JEREOS_ST.coordinates,
+			landmarks.JAVELLANA_EXT.coordinates,
+			landmarks.COMMISSION_CIVIL_ST.coordinates,
+			landmarks.BURGOS_ST.coordinates,
+			landmarks.HUERVANA_ST.coordinates,
+			landmarks.GEN_HUGHES_ST.coordinates,
+		],
+	},
+	BITO_ON_TO_LAPAZ: {
+		name: "BITO-ON - LAPAZ VIA COASTAL LOOP",
+		path: [
+			landmarks.BITO_ON.coordinates,
+			landmarks.BURGOS_ST_V2.coordinates,
+			landmarks.BURGOS_ST_V3.coordinates,
+		],
+	},
+	UNGKA_TO_LAPAZ: {
+		name: "UNGKA - LA PAZ VIA CPU - ISATU LOOP",
+		path: [],
+	},
 };
 
 export const fares = {

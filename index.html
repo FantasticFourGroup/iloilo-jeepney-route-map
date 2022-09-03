@@ -22,18 +22,29 @@
 		<div id="map"></div>
 		<div id="block" class="form-block">
 			<button id="button">GO!!!</button>
+			<div id="details">
+				<div class="detail">
+					<b class="distance">Distance: </b>
+				</div>
+				<div class="detail">
+					<b class="fare">Fare: </b>
+				</div>
+				<div class="detail" id="jeep-type">
+					<b class="jeep-type">Jeepney: </b>
+				</div>
+			</div>
 		</div>
 		<div class="jeep-form">
 			<h3 class="select-title">View Jeepney Routes</h3>
 			<h4 class="select-subtitle">Select a Jeepney</h4>
 			<div class="jeep-select">
-				<div class="hoverable first-route">
+				<div class="hoverable first-route" id="first-route">
 					<img class="jeep-img" src="/jeep.png" alt="jeep" />
 				</div>
-				<div class="hoverable second-route">
+				<div class="hoverable second-route" id="second-route">
 					<img class="jeep-img" src="/jeep.png" alt="jeep" />
 				</div>
-				<div class="hoverable third-route">
+				<div class="hoverable third-route" id="third-route">
 					<img class="jeep-img" src="/jeep.png" alt="jeep" />
 				</div>
 			</div>

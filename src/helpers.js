@@ -1,7 +1,7 @@
 import { distance, point, featureCollection, nearestPoint } from "@turf/turf";
 
 import { setupOnClick } from "./actions";
-import { fares } from "./constants";
+import { fares, routes } from "./constants";
 
 export const getRouteDistance = (start, end, data) => {
 	setupOnClick();
@@ -45,6 +45,19 @@ const getFareDetails = (fareType, PUJDetails) => {
 			return PUJDetails.special;
 		default:
 			return PUJDetails.regular;
+	}
+};
+
+export const getJeepRouteName = (divName) => {
+	switch (divName) {
+		case "first-route":
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE.name;
+		case "second-route":
+			return routes.BITO_ON_TO_LAPAZ.name;
+		case "third-route":
+			return routes.UNGKA_TO_LAPAZ.name;
+		default:
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE.name;
 	}
 };
 
