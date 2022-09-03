@@ -1,5 +1,4 @@
 import { createMarker } from "./actions";
-import { routes } from "./constants";
 import { getRouteDistance, getFare } from "./helpers";
 
 const removeRouteMarkers = (response) => {
@@ -34,6 +33,7 @@ export const createIloiloMap = (error, response) => {
 		center: [10.7202, 122.5621],
 		layers: mapLayer,
 		zoom: 14,
+		zoomControl: false,
 	});
 
 	removeRouteMarkers(response).addTo(map);
