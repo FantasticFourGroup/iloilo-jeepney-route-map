@@ -51,3 +51,39 @@ export const routes = {
 		landmarks.BURGOS_ST_V3.coordinates,
 	],
 };
+
+export const fares = {
+	TRAD_PUJ: {
+		regular: {
+			start: 11.0,
+			increment: 1.5,
+		},
+		special: {
+			start: 8.75,
+			increment: 1.2,
+		},
+		limit: 18,
+	},
+	MOD_PUJ_AIR: {
+		regular: {
+			start: 13.0,
+			increment: 1.8,
+		},
+		special: {
+			start: 10.5,
+			increment: 1.44,
+		},
+		limit: 18,
+	},
+	MOD_PUJ_NON_AIR: {
+		regular: {
+			start: 13.0,
+			increment: 1.5,
+		},
+		special: {
+			start: 10.5,
+			increment: 1.2,
+		},
+		limit: 18,
+	},
+};

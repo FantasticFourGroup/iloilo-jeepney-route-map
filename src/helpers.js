@@ -1,21 +1,9 @@
 import { distance, point, featureCollection, nearestPoint } from "@turf/turf";
 
 import { setupOnClick } from "./actions";
+import { fares } from "./constants";
 
-export const downloadFile = (obj) => {
-	const data =
-		"text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
-
-	const a = document.createElement("a");
-	a.href = "data:" + data;
-	a.download = "data.json";
-	a.innerHTML = "download JSON";
-
-	const container = document.getElementById("formBlock");
-	container.appendChild(a);
-};
-
-export const getMarkerDetails = (start, end, data) => {
+export const getRouteDistance = (start, end, data) => {
 	setupOnClick();
 	const transformedData = data.map((coord) => point([coord.lng, coord.lat]));
 	const points = featureCollection(transformedData);
@@ -23,8 +11,6 @@ export const getMarkerDetails = (start, end, data) => {
 	const endDetails = nearestPoint(end, points);
 	const startIndex = startDetails.properties.featureIndex;
 	const endIndex = endDetails.properties.featureIndex;
-
-	const subPoints = transformedData.slice(startIndex, endIndex + 1);
 
 	let totalDistance = 0;
 
@@ -35,13 +21,39 @@ export const getMarkerDetails = (start, end, data) => {
 		totalDistance += smallDistance;
 	}
 
-	document.getElementById("block").insertAdjacentHTML(
-		"afterbegin",
-		/*html*/ `
-			<div id="details">
-				<b id="distance">Distance: </b>${totalDistance}
-				<br><br>
-			</div>
-		`
-	);
+	return totalDistance;
+};
+
+const getPUJDetails = (PUJType) => {
+	switch (PUJType) {
+		case "TRAD_PUJ":
+			return fares.TRAD_PUJ;
+		case "MOD_PUJ_AIR":
+			return fares.MOD_PUJ_AIR;
+		case "MOD_PUJ_NON_AIR":
+			return fares.MOD_PUJ_NON_AIR;
+		default:
+			return fares.TRAD_PUJ;
+	}
+};
+
+const getFareDetails = (fareType, PUJDetails) => {
+	switch (fareType) {
+		case "regular":
+			return PUJDetails.regular;
+		case "special":
+			return PUJDetails.special;
+		default:
+			return PUJDetails.regular;
+	}
+};
+
+export const getFare = (PUJType, fareType, distance) => {
+	const PUJDetails = getPUJDetails(PUJType);
+	const fareDetails = getFareDetails(fareType, PUJDetails);
+	console.log(fareDetails, distance);
+	if (distance <= 4 && distance >= 1) {
+		return fareDetails.start;
+	}
+	return (distance - 4) * fareDetails.increment + fareDetails.start;
 };

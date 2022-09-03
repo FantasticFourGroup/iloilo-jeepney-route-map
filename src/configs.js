@@ -1,6 +1,6 @@
 import { createMarker } from "./actions";
 import { routes } from "./constants";
-import { getMarkerDetails } from "./helpers";
+import { getRouteDistance, getFare } from "./helpers";
 
 const removeRouteMarkers = (response) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
@@ -74,8 +74,27 @@ export const createIloiloMap = (error, response) => {
 		const startArray = [start.lng, start.lat];
 		const endArray = [end.lng, end.lat];
 
-		getMarkerDetails(startArray, endArray, shapePoints);
-	});
+		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
+		const totalFare = getFare(
+			"MOD_PUJ_AIR",
+			"regular",
+			Math.floor(totalDistance)
+		);
 
+		document.getElementById("block").insertAdjacentHTML(
+			"afterbegin",
+			/*html*/ `
+				<div id="details">
+					<b id="distance">Distance: </b>${Math.floor(totalDistance)}
+
+					<br><br>
+
+					<b id="distance">Fare: </b>${totalFare}
+					
+					<br><br>
+				</div>
+			`
+		);
+	});
 	console.log(response);
 };
