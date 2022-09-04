@@ -37,6 +37,7 @@ export const setDOMActions = () => {
 	routeDivs.forEach((routeDiv) => {
 		document.getElementById(routeDiv).addEventListener("click", () => {
 			const jeepneyType = getJeepRouteName(routeDiv);
+			// sessionStorage.setItem("jeepney", jeepneyType);
 			const jeepDiv = document.getElementById("jeep-type");
 			jeepDiv.innerHTML = /*html*/ `
 				<b class="jeep-type">Jeepney: </b>${jeepneyType}

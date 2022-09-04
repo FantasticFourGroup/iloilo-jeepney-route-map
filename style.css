@@ -14,7 +14,7 @@ body {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
-	bottom: 50%;
+	bottom: 10%;
 	right: 10px;
 	padding: 10px;
 	z-index: 999;
@@ -22,6 +22,69 @@ body {
 	border-radius: 5px;
 	width: 100%;
 	font-family: "Roboto";
+}
+
+.form-title {
+	text-align: center;
+	font-weight: 900;
+	font-size: 10px;
+}
+
+.form-inputs {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #4b4b4b;
+	border-radius: 5px;
+	padding: 20px 5px 10px;
+}
+
+.form-control {
+	display: flex;
+	align-items: center;
+	margin: 5px auto;
+}
+
+.input-control {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.input-control > label {
+	font-weight: 900;
+}
+
+.input-control > input[type="text"] {
+	background-color: #e8e8e8;
+	border: 1px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px 0px;
+	box-shadow: 0px 2px;
+}
+
+.marker-input {
+	width: 250px;
+}
+
+.go-button {
+	background-color: #0dc135;
+	margin-top: 10px;
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
 }
 
 .select-title {
@@ -102,9 +165,13 @@ input:nth-child(1) {
 	margin-bottom: 10px;
 }
 
+.details {
+	margin: 20px 5px;
+}
+
 .detail {
 	display: block;
-	margin: 5px;
+	margin: 20px 5px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -114,5 +181,9 @@ input:nth-child(1) {
 
 	.form-block {
 		max-width: 200px;
+	}
+
+	.marker-input {
+		width: 150px;
 	}
 }
