@@ -66,10 +66,12 @@ export const createIloiloMap = (error, response) => {
 		zoomControl: false,
 	});
 
+	console.log(response.route.locations);
+
 	removeRouteMarkers(response).addTo(map);
 
-	const startMarker = createMarker("start");
-	const endMarker = createMarker("end");
+	const startMarker = createMarker("start", response.route.locations);
+	const endMarker = createMarker("end", response.route.locations);
 
 	startMarker.addTo(map);
 	endMarker.addTo(map);

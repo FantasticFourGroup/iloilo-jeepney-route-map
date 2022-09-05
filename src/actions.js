@@ -1,11 +1,12 @@
 import { landmarks } from "./constants";
+import { coordObjToList } from "./helpers";
 
-export const createMarker = (markerType) => {
+export const createMarker = (markerType, locations) => {
 	const color = markerType == "start" ? "#00FF00" : "#FF0000";
+	const firstCoord = coordObjToList(locations[0].latLng);
+	const lastCoord = coordObjToList(locations[locations.length - 1].latLng);
 	const coordinates =
-		markerType == "start"
-			? L.latLng(landmarks.LOPEZ_JAENA_ST.coordinates)
-			: L.latLng(landmarks.GEN_HUGHES_ST.coordinates);
+		markerType == "start" ? L.latLng(firstCoord) : L.latLng(lastCoord);
 
 	sessionStorage.setItem(
 		markerType,

@@ -17,7 +17,7 @@ const directions = L.mapquest.directions();
 
 directions.route(
 	{
-		waypoints: routes.LAPAZ_TO_CITY_PROPER_ROUTE.path,
+		waypoints: routes.BITO_ON_TO_LAPAZ.path,
 	},
 	createIloiloMap
 );

@@ -70,3 +70,7 @@ export const getFare = (PUJType, fareType, distance) => {
 	}
 	return (distance - 4) * fareDetails.increment + fareDetails.start;
 };
+
+export const coordObjToList = (obj) => {
+	return [obj.lat, obj.lng];
+};
