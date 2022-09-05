@@ -1,11 +1,6 @@
 import "./style.css";
 import { routes } from "./src/constants";
-import {
-	createIloiloMap,
-	setSessionStorage,
-	setDOMValues,
-	setDOMActions,
-} from "./src/configs";
+import { createIloiloMap } from "./src/configs";
 
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
@@ -18,8 +13,6 @@ const map = L.mapquest.map("map", {
 	zoomControl: false,
 });
 
-setSessionStorage();
-
 const directions = L.mapquest.directions();
 
 directions.route(
@@ -28,6 +21,3 @@ directions.route(
 	},
 	createIloiloMap(map, routes.LAPAZ_TO_CITY_PROPER_ROUTE)
 );
-
-setDOMActions(map);
-setDOMValues();

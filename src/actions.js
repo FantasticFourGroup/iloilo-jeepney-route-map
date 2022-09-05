@@ -1,4 +1,3 @@
-import { landmarks } from "./constants";
 import { coordObjToList } from "./helpers";
 
 export const createMarker = (markerType, locations) => {

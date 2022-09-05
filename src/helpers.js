@@ -24,6 +24,16 @@ export const getRouteDistance = (start, end, data) => {
 	return totalDistance;
 };
 
+export const setMarkerSession = (markerType, coordinates) => {
+	sessionStorage.setItem(
+		markerType,
+		JSON.stringify({
+			lat: coordinates.lat,
+			lng: coordinates.lng,
+		})
+	);
+};
+
 const getPUJDetails = (PUJType) => {
 	switch (PUJType) {
 		case "TRAD_PUJ":
@@ -58,6 +68,19 @@ export const getJeepRouteName = (divName) => {
 			return routes.UNGKA_TO_LAPAZ.name;
 		default:
 			return routes.LAPAZ_TO_CITY_PROPER_ROUTE.name;
+	}
+};
+
+export const getJeepRoute = (divName) => {
+	switch (divName) {
+		case "first-route":
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
+		case "second-route":
+			return routes.BITO_ON_TO_LAPAZ;
+		case "third-route":
+			return routes.UNGKA_TO_LAPAZ;
+		default:
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
 	}
 };
 
