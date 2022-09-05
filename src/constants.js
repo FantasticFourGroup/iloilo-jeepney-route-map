@@ -23,6 +23,24 @@ export const landmarks = {
 	HUERVANA_ST: {
 		coordinates: [10.710002315221114, 122.56960431178891],
 	},
+	BONIFACIO_DR: {
+		coordinates: [10.702416476345652, 122.56809373206555],
+	},
+	JALANDONI_ST: {
+		coordinates: [10.700122796497132, 122.56176964774053],
+	},
+	DE_LEON_ST: {
+		coordinates: [10.693262855485619, 122.56170007619939],
+	},
+	FUENTES_ST: {
+		coordinates: [10.693841423048587, 122.56324286460115],
+	},
+	LEDESMA_ST: {
+		coordinates: [10.694609757600812, 122.56336242925103],
+	},
+	JM_BASA_ST: {
+		coordinates: [10.696164859708874, 122.56935465569131],
+	},
 	BITO_ON: {
 		coordinates: [10.757649579489465, 122.5932535599162],
 	},
@@ -45,6 +63,12 @@ export const routes = {
 			landmarks.COMMISSION_CIVIL_ST.coordinates,
 			landmarks.BURGOS_ST.coordinates,
 			landmarks.HUERVANA_ST.coordinates,
+			landmarks.BONIFACIO_DR.coordinates,
+			landmarks.JALANDONI_ST.coordinates,
+			landmarks.DE_LEON_ST.coordinates,
+			landmarks.FUENTES_ST.coordinates,
+			landmarks.LEDESMA_ST.coordinates,
+			landmarks.JM_BASA_ST.coordinates,
 			landmarks.GEN_HUGHES_ST.coordinates,
 		],
 	},

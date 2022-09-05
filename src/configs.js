@@ -104,6 +104,8 @@ export const createIloiloMap = (error, response) => {
 		const startArray = [start.lng, start.lat];
 		const endArray = [end.lng, end.lat];
 
+		console.log(startArray);
+
 		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
 		const totalFare = getFare(
 			"MOD_PUJ_AIR",
