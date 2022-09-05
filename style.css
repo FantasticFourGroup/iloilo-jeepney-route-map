@@ -10,7 +10,6 @@ body {
 }
 
 .form-block {
-	max-width: 300px;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
@@ -20,7 +19,7 @@ body {
 	z-index: 999;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 	border-radius: 5px;
-	width: 100%;
+	width: 300px;
 	font-family: "Roboto";
 }
 
@@ -99,7 +98,6 @@ body {
 }
 
 .jeep-form {
-	max-width: 300px;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
@@ -109,7 +107,7 @@ body {
 	z-index: 999;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 	border-radius: 2.5px;
-	width: 100%;
+	width: 300px;
 	text-align: center;
 	font-family: "Roboto";
 }
@@ -176,11 +174,11 @@ input:nth-child(1) {
 
 @media only screen and (max-width: 600px) {
 	.jeep-form {
-		max-width: 200px;
+		width: 150px;
 	}
 
 	.form-block {
-		max-width: 200px;
+		width: 200px;
 	}
 
 	.marker-input {
