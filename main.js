@@ -9,15 +9,25 @@ import {
 
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
+const mapLayer = L.mapquest.tileLayer("map");
+
+const map = L.mapquest.map("map", {
+	center: [10.7202, 122.5621],
+	layers: mapLayer,
+	zoom: 14,
+	zoomControl: false,
+});
+
 setSessionStorage();
-setDOMActions();
-setDOMValues();
 
 const directions = L.mapquest.directions();
 
 directions.route(
 	{
-		waypoints: routes.BITO_ON_TO_LAPAZ.path,
+		waypoints: routes.LAPAZ_TO_CITY_PROPER_ROUTE.path,
 	},
-	createIloiloMap
+	createIloiloMap(map, routes.LAPAZ_TO_CITY_PROPER_ROUTE)
 );
+
+setDOMActions(map);
+setDOMValues();

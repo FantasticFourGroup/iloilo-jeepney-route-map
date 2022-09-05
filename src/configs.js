@@ -2,7 +2,7 @@ import { createMarker } from "./actions";
 import { getRouteDistance, getFare, getJeepRouteName } from "./helpers";
 import { routes } from "./constants";
 
-const removeRouteMarkers = (response) => {
+const removeRouteMarkers = (response, route) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
 
 	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
@@ -20,7 +20,7 @@ const removeRouteMarkers = (response) => {
 	return new DirectionsLayerWithEmptyMarkers({
 		directionsResponse: response,
 		routeRibbon: {
-			color: "#18BE00",
+			color: route.color,
 			opacity: 1.0,
 			showTraffic: false,
 		},
@@ -31,16 +31,17 @@ export const setSessionStorage = () => {
 	sessionStorage.setItem("jeepney", routes.LAPAZ_TO_CITY_PROPER_ROUTE.name);
 };
 
-export const setDOMActions = () => {
+export const setDOMActions = (map) => {
 	const routeDivs = ["first-route", "second-route", "third-route"];
 
 	routeDivs.forEach((routeDiv) => {
 		document.getElementById(routeDiv).addEventListener("click", () => {
 			const jeepneyType = getJeepRouteName(routeDiv);
-			// sessionStorage.setItem("jeepney", jeepneyType);
+			sessionStorage.setItem("jeepney", jeepneyType);
+			const storedType = sessionStorage.getItem("jeepney");
 			const jeepDiv = document.getElementById("jeep-type");
 			jeepDiv.innerHTML = /*html*/ `
-				<b class="jeep-type">Jeepney: </b>${jeepneyType}
+				<b class="jeep-type">Jeepney: </b>${storedType}
 			`;
 		});
 	});
@@ -56,19 +57,8 @@ export const setDOMValues = () => {
 	);
 };
 
-export const createIloiloMap = (error, response) => {
-	const mapLayer = L.mapquest.tileLayer("map");
-
-	const map = L.mapquest.map("map", {
-		center: [10.7202, 122.5621],
-		layers: mapLayer,
-		zoom: 14,
-		zoomControl: false,
-	});
-
-	console.log(response.route.locations);
-
-	removeRouteMarkers(response).addTo(map);
+export const createIloiloMap = (map, route) => (error, response) => {
+	removeRouteMarkers(response, route).addTo(map);
 
 	const startMarker = createMarker("start", response.route.locations);
 	const endMarker = createMarker("end", response.route.locations);
@@ -105,8 +95,6 @@ export const createIloiloMap = (error, response) => {
 
 		const startArray = [start.lng, start.lat];
 		const endArray = [end.lng, end.lat];
-
-		console.log(startArray);
 
 		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
 		const totalFare = getFare(

@@ -71,6 +71,7 @@ export const routes = {
 			landmarks.JM_BASA_ST.coordinates,
 			landmarks.GEN_HUGHES_ST.coordinates,
 		],
+		color: "#E70000",
 	},
 	BITO_ON_TO_LAPAZ: {
 		name: "BITO-ON - LAPAZ VIA COASTAL LOOP",
@@ -79,6 +80,7 @@ export const routes = {
 			landmarks.BURGOS_ST_V2.coordinates,
 			landmarks.BURGOS_ST_V3.coordinates,
 		],
+		color: "#0066FF",
 	},
 	UNGKA_TO_LAPAZ: {
 		name: "UNGKA - LA PAZ VIA CPU - ISATU LOOP",

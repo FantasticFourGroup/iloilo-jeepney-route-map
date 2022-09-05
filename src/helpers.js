@@ -64,7 +64,6 @@ export const getJeepRouteName = (divName) => {
 export const getFare = (PUJType, fareType, distance) => {
 	const PUJDetails = getPUJDetails(PUJType);
 	const fareDetails = getFareDetails(fareType, PUJDetails);
-	console.log(fareDetails, distance);
 	if (distance <= 4 && distance >= 1) {
 		return fareDetails.start;
 	}
