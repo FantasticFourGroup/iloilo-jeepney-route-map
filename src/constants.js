@@ -50,6 +50,18 @@ export const landmarks = {
 	BURGOS_ST_V3: {
 		coordinates: [10.711671792640523, 122.5719776288044],
 	},
+	BURGOS_ST_V4: {
+		coordinates: [10.711362132614193, 122.57157587060006],
+	},
+	UNGKA_TERMINAL: {
+		coordinates: [10.75293276136994, 122.53846748716742],
+	},
+	DIVERSION_RD: {
+		coordinates: [10.742016624554353, 122.53958303566986],
+	},
+	RIZAL_ST: {
+		coordinates: [10.724007188092342, 122.55693279320172],
+	},
 };
 
 export const routes = {
@@ -84,7 +96,11 @@ export const routes = {
 	},
 	UNGKA_TO_LAPAZ: {
 		name: "UNGKA - LA PAZ VIA CPU - ISATU LOOP",
-		path: [],
+		path: [
+			landmarks.UNGKA_TERMINAL.coordinates,
+			landmarks.BURGOS_ST_V2.coordinates,
+		],
+		color: "#EBFF00",
 	},
 };
 

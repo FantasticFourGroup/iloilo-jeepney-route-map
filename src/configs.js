@@ -34,44 +34,33 @@ const removeRouteMarkers = (response, route) => {
 export const setSessionStorage = (name) => {
 	sessionStorage.clear();
 	sessionStorage.setItem("jeepney", name);
-	sessionStorage.setItem("disabled", false);
 };
 
-export const setDOMActions = (map, routeLayer, markerLayers) => {
+export const setDOMActions = (map, routeLayer, markerGroup) => {
 	const routeDivs = ["first-route", "second-route", "third-route"];
 
 	routeDivs.forEach((routeDiv) => {
 		document.getElementById(routeDiv).addEventListener("click", (event) => {
-			const disabled = sessionStorage.getItem("disabled");
-			if (!JSON.parse(disabled)) {
-				setTimeout(() => {
-					sessionStorage.removeItem("disabled");
-					sessionStorage.setItem("disabled", true);
-					const jeepRoute = getJeepRoute(routeDiv);
-					const jeepneyType = jeepRoute.name;
-					sessionStorage.setItem("jeepney", jeepneyType);
-					const storedType = sessionStorage.getItem("jeepney");
-					const jeepDiv = document.getElementById("jeep-type");
-					jeepDiv.innerHTML = /*html*/ `
+			const jeepRoute = getJeepRoute(routeDiv);
+			const jeepneyType = jeepRoute.name;
+			sessionStorage.setItem("jeepney", jeepneyType);
+			const storedType = sessionStorage.getItem("jeepney");
+			const jeepDiv = document.getElementById("jeep-type");
+			jeepDiv.innerHTML = /*html*/ `
 							<b class="jeep-type">Jeepney: </b>${storedType}
 						`;
 
-					routeLayer.clearLayers();
-					markerLayers.forEach((markerLayer) => {
-						markerLayer.remove();
-					});
+			routeLayer.clearLayers();
+			markerGroup.clearLayers();
+			map.removeLayer(markerGroup);
 
-					const directions = L.mapquest.directions();
-					directions.route(
-						{
-							waypoints: jeepRoute.path,
-						},
-						createIloiloMap(map, jeepRoute)
-					);
-				}, 2000);
-				sessionStorage.removeItem("disabled");
-				sessionStorage.setItem("disabled", false);
-			}
+			const directions = L.mapquest.directions();
+			directions.route(
+				{
+					waypoints: jeepRoute.path,
+				},
+				createIloiloMap(map, jeepRoute)
+			);
 		});
 	});
 };
@@ -90,14 +79,17 @@ export const setDOMValues = () => {
 
 export const createIloiloMap = (map, route) => (error, response) => {
 	setSessionStorage(route.name);
+
+	const markerGroup = L.layerGroup().addTo(map);
+
 	const routeLayer = removeRouteMarkers(response, route);
 	routeLayer.addTo(map);
 
 	const startMarker = createMarker("start", response.route.locations);
 	const endMarker = createMarker("end", response.route.locations);
 
-	startMarker.addTo(map);
-	endMarker.addTo(map);
+	startMarker.addTo(markerGroup);
+	endMarker.addTo(markerGroup);
 
 	setMarkerSession("start", startMarker.getLatLng());
 	setMarkerSession("end", endMarker.getLatLng());
@@ -113,7 +105,7 @@ export const createIloiloMap = (map, route) => (error, response) => {
 	});
 
 	setDOMValues();
-	setDOMActions(map, routeLayer, [startMarker, endMarker]);
+	setDOMActions(map, routeLayer, markerGroup);
 
 	document.getElementById("go-button").addEventListener("click", (event) => {
 		const start = JSON.parse(sessionStorage.getItem("start"));
