@@ -21,3 +21,29 @@ directions.route(
 	},
 	createIloiloMap(map, routes.LAPAZ_TO_CITY_PROPER_ROUTE)
 );
+
+const setupEventButtons = () => {
+	const leftButton = document.getElementById("left");
+	const rightButton = document.getElementById("right");
+
+	const formModal = document.getElementById("form-modal");
+	const jeepForm = document.getElementById("jeep-form");
+
+	leftButton.onclick = () => {
+		if (jeepForm.style.display === "none") {
+			jeepForm.style.display = "block";
+		} else {
+			jeepForm.style.display = "none";
+		}
+	};
+
+	rightButton.onclick = () => {
+		if (formModal.style.display === "none") {
+			formModal.style.display = "block";
+		} else {
+			formModal.style.display = "none";
+		}
+	};
+};
+
+setupEventButtons();

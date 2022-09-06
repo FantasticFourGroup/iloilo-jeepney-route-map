@@ -115,7 +115,7 @@ export const createIloiloMap = (map, route) => (error, response) => {
 	setDOMValues();
 	setDOMActions(map, routeLayer, [startMarker, endMarker]);
 
-	document.getElementById("button").addEventListener("click", (event) => {
+	document.getElementById("go-button").addEventListener("click", (event) => {
 		const start = JSON.parse(sessionStorage.getItem("start"));
 		const end = JSON.parse(sessionStorage.getItem("end"));
 		const { shapePoints } = response.route.shape;
@@ -131,7 +131,7 @@ export const createIloiloMap = (map, route) => (error, response) => {
 		);
 		const jeepneyType = sessionStorage.getItem("jeepney");
 
-		document.getElementById("block").insertAdjacentHTML(
+		document.getElementById("form-modal").insertAdjacentHTML(
 			"beforeend",
 			/*html*/ `
 				<div id="details">

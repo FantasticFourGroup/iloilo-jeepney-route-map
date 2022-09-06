@@ -9,14 +9,56 @@ body {
 	width: 100%;
 }
 
+.button-group {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	z-index: 999;
+}
+
+button {
+	box-sizing: border-box;
+	padding: 15px;
+	appearance: none;
+	border-radius: 4px;
+	background: #ffdee3;
+	border: none;
+}
+
+button:focus {
+	outline: none;
+	border: 0;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 4px #346af3;
+	position: relative;
+}
+
+button.left {
+	background: #346af3;
+	color: #fff;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+button.right {
+	background: #fff;
+	border: solid 1px lightgrey;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.button-container {
+	display: flex;
+}
+
 .form-block {
+	display: block;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
 	bottom: 10%;
 	right: 10px;
 	padding: 10px;
-	z-index: 999;
+	z-index: 998;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 	border-radius: 5px;
 	width: 300px;
@@ -98,13 +140,14 @@ body {
 }
 
 .jeep-form {
+	display: block;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
 	top: 10%;
 	left: 10px;
 	padding: 5px;
-	z-index: 999;
+	z-index: 997;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 	border-radius: 2.5px;
 	width: 300px;

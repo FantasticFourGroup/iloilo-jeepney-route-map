@@ -20,7 +20,15 @@
 	</head>
 	<body>
 		<div id="map"></div>
-		<div id="block" class="form-block">
+		<div class="button-group">
+			<div class="button-container">
+				<button type="button" id="left" class="left">Toggle Jeep Select</button>
+				<button type="button" id="right" class="right">
+					Toggle Travel Modal
+				</button>
+			</div>
+		</div>
+		<div id="form-modal" class="form-block">
 			<div class="form-title">
 				<h1>Travel</h1>
 			</div>
@@ -38,7 +46,7 @@
 					</div>
 				</div>
 				<div class="form-control">
-					<button class="go-button" id="button">GO!!!</button>
+					<button class="go-button" id="go-button">GO!!!</button>
 				</div>
 			</div>
 			<div class="details" id="details">
@@ -53,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="jeep-form">
+		<div id="jeep-form" class="jeep-form">
 			<h3 class="select-title">View Jeepney Routes</h3>
 			<h4 class="select-subtitle">Select a Jeepney</h4>
 			<div class="jeep-select">
