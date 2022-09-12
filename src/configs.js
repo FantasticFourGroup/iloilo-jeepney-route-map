@@ -32,8 +32,11 @@ const removeRouteMarkers = (response, route) => {
 };
 
 export const setSessionStorage = (name) => {
-	sessionStorage.clear();
-	sessionStorage.setItem("jeepney", name);
+	const storedJeep = sessionStorage.getItem("jeepney");
+	if (!storedJeep) {
+		sessionStorage.clear();
+		sessionStorage.setItem("jeepney", name);
+	}
 };
 
 export const setDOMActions = (map, routeLayer, markerGroup) => {
@@ -44,23 +47,8 @@ export const setDOMActions = (map, routeLayer, markerGroup) => {
 			const jeepRoute = getJeepRoute(routeDiv);
 			const jeepneyType = jeepRoute.name;
 			sessionStorage.setItem("jeepney", jeepneyType);
-			const storedType = sessionStorage.getItem("jeepney");
-			const jeepDiv = document.getElementById("jeep-type");
-			jeepDiv.innerHTML = /*html*/ `
-							<b class="jeep-type">Jeepney: </b>${storedType}
-						`;
 
-			routeLayer.clearLayers();
-			markerGroup.clearLayers();
-			map.removeLayer(markerGroup);
-
-			const directions = L.mapquest.directions();
-			directions.route(
-				{
-					waypoints: jeepRoute.path,
-				},
-				createIloiloMap(map, jeepRoute)
-			);
+			window.location.reload();
 		});
 	});
 };

@@ -84,6 +84,19 @@ export const getJeepRoute = (divName) => {
 	}
 };
 
+export const getJeepRouteByString = (jeepName) => {
+	switch (jeepName) {
+		case "LA PAZ - ILOILO CITY PROPER VIA ISATU":
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
+		case "BITO-ON - LAPAZ VIA COASTAL LOOP":
+			return routes.BITO_ON_TO_LAPAZ;
+		case "UNGKA - LA PAZ VIA CPU - ISATU LOOP":
+			return routes.UNGKA_TO_LAPAZ;
+		default:
+			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
+	}
+};
+
 export const getFare = (PUJType, fareType, distance) => {
 	const PUJDetails = getPUJDetails(PUJType);
 	const fareDetails = getFareDetails(fareType, PUJDetails);

@@ -1,6 +1,7 @@
 import "./style.css";
 import { routes } from "./src/constants";
 import { createIloiloMap } from "./src/configs";
+import { getJeepRouteByString } from "./src/helpers";
 
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
@@ -13,13 +14,20 @@ const map = L.mapquest.map("map", {
 	zoomControl: false,
 });
 
+const storedJeep = sessionStorage.getItem("jeepney");
+
+const jeepObj =
+	storedJeep === null
+		? routes.LAPAZ_TO_CITY_PROPER_ROUTE
+		: getJeepRouteByString(storedJeep);
+
 const directions = L.mapquest.directions();
 
 directions.route(
 	{
-		waypoints: routes.LAPAZ_TO_CITY_PROPER_ROUTE.path,
+		waypoints: jeepObj.path,
 	},
-	createIloiloMap(map, routes.LAPAZ_TO_CITY_PROPER_ROUTE)
+	createIloiloMap(map, jeepObj)
 );
 
 const setupEventButtons = () => {
