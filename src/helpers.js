@@ -12,9 +12,20 @@ export const getRouteDistance = (start, end, data) => {
 	const startIndex = startDetails.properties.featureIndex;
 	const endIndex = endDetails.properties.featureIndex;
 
+	let startPos;
+	let endPos;
+
+	if (endIndex > startIndex) {
+		startPos = startIndex;
+		endPos = endIndex;
+	} else {
+		startPos = endIndex;
+		endPos = startIndex;
+	}
+
 	let totalDistance = 0;
 
-	for (let i = startIndex; i < endIndex; i++) {
+	for (let i = startPos; i < endPos; i++) {
 		const first = point([data[i].lng, data[i].lat]);
 		const second = point([data[i + 1].lng, data[i + 1].lat]);
 		const smallDistance = distance(first, second);
