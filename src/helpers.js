@@ -77,6 +77,8 @@ export const getJeepRouteName = (divName) => {
 			return routes.BITO_ON_TO_LAPAZ.name;
 		case "third-route":
 			return routes.UNGKA_TO_LAPAZ.name;
+		case "fourth-route":
+			return routes.LAPAZ_TO_FESTIVE.name;
 		default:
 			return routes.LAPAZ_TO_CITY_PROPER_ROUTE.name;
 	}
@@ -90,6 +92,8 @@ export const getJeepRoute = (divName) => {
 			return routes.BITO_ON_TO_LAPAZ;
 		case "third-route":
 			return routes.UNGKA_TO_LAPAZ;
+		case "fourth-route":
+			return routes.LAPAZ_TO_FESTIVE;
 		default:
 			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
 	}
@@ -103,6 +107,8 @@ export const getJeepRouteByString = (jeepName) => {
 			return routes.BITO_ON_TO_LAPAZ;
 		case "UNGKA - LA PAZ VIA CPU - ISATU LOOP":
 			return routes.UNGKA_TO_LAPAZ;
+		case "LA PAZ - FESTIVE WALK TRANSPORT HUB VIA NABITASAN LOOP":
+			return routes.LAPAZ_TO_FESTIVE;
 		default:
 			return routes.LAPAZ_TO_CITY_PROPER_ROUTE;
 	}

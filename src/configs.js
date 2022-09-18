@@ -40,7 +40,12 @@ export const setSessionStorage = (name) => {
 };
 
 export const setDOMActions = (map, routeLayer, markerGroup) => {
-	const routeDivs = ["first-route", "second-route", "third-route"];
+	const routeDivs = [
+		"first-route",
+		"second-route",
+		"third-route",
+		"fourth-route",
+	];
 
 	routeDivs.forEach((routeDiv) => {
 		document.getElementById(routeDiv).addEventListener("click", (event) => {
@@ -111,8 +116,8 @@ export const createIloiloMap = (map, route) => (error, response) => {
 		);
 		const jeepneyType = sessionStorage.getItem("jeepney");
 
-		document.getElementById("form-modal").insertAdjacentHTML(
-			"beforeend",
+		document.getElementById("go-button-container").insertAdjacentHTML(
+			"beforebegin",
 			/*html*/ `
 				<div id="details">
 					<div class="detail">

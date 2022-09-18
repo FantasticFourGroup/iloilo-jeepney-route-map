@@ -62,6 +62,27 @@ export const landmarks = {
 	RIZAL_ST: {
 		coordinates: [10.724007188092342, 122.55693279320172],
 	},
+	FESTIVE_WALK: {
+		coordinates: [10.717300878818817, 122.54710578867638],
+	},
+	ARROYO_ST: {
+		coordinates: [10.709824798042911, 122.5668699544163],
+	},
+	HECHANOVA_ST: {
+		coordinates: [10.705541054619077, 122.56328157061957],
+	},
+	HECHANOVA_ST_V2: {
+		coordinates: [10.703055553569909, 122.5570609368937],
+	},
+	ILOILO_RIVER_BLVD: {
+		coordinates: [10.704360122525255, 122.55519393420805],
+	},
+	SERVICE_RD: {
+		coordinates: [10.709411859948675, 122.55176039130507],
+	},
+	PISON_AVE: {
+		coordinates: [10.70404002104515, 122.54407557662977],
+	},
 };
 
 export const routes = {
@@ -101,6 +122,18 @@ export const routes = {
 			landmarks.BURGOS_ST_V2.coordinates,
 		],
 		color: "#EBFF00",
+	},
+	LAPAZ_TO_FESTIVE: {
+		name: "LA PAZ - FESTIVE WALK TRANSPORT HUB VIA NABITASAN LOOP",
+		path: [
+			landmarks.BURGOS_ST_V3.coordinates,
+			landmarks.ARROYO_ST.coordinates,
+			landmarks.HECHANOVA_ST.coordinates,
+			landmarks.SERVICE_RD.coordinates,
+			landmarks.PISON_AVE.coordinates,
+			landmarks.FESTIVE_WALK.coordinates,
+		],
+		color: "#0dc135",
 	},
 };
 
