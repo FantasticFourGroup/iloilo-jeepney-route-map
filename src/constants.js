@@ -2,6 +2,9 @@ export const landmarks = {
 	GEN_HUGHES_ST: {
 		coordinates: [10.68845840453183, 122.57971679879475],
 	},
+	GEN_HUGHES_ST_V2: {
+		coordinates: [10.69184983899303, 122.57384107770928],
+	},
 	BALDOZA_TERMINAL: {
 		coordinates: [10.71356947676554, 122.58209237413162],
 	},
@@ -32,6 +35,9 @@ export const landmarks = {
 	BONIFACIO_DR: {
 		coordinates: [10.702416476345652, 122.56809373206555],
 	},
+	BONIFACIO_DR_V2: {
+		coordinates: [10.704237448550401, 122.56800037544564],
+	},
 	JALANDONI_ST: {
 		coordinates: [10.700122796497132, 122.56176964774053],
 	},
@@ -46,6 +52,9 @@ export const landmarks = {
 	},
 	JM_BASA_ST: {
 		coordinates: [10.696164859708874, 122.56935465569131],
+	},
+	JM_BASA_ST_V2: {
+		coordinates: [10.69255911510122, 122.57318114588281],
 	},
 	BITO_ON: {
 		coordinates: [10.757649579489465, 122.5932535599162],
@@ -107,6 +116,9 @@ export const landmarks = {
 	LUNA_ST: {
 		coordinates: [10.709059515621806, 122.56674863887783],
 	},
+	IZNART_ST: {
+		coordinates: [10.701035137294959, 122.56909625908094],
+	},
 };
 
 export const routes = {
@@ -130,6 +142,8 @@ export const routes = {
 		],
 		reversePath: [
 			landmarks.GEN_HUGHES_ST.coordinates,
+			landmarks.IZNART_ST.coordinates,
+			landmarks.BONIFACIO_DR_V2.coordinates,
 			landmarks.BALDOZA_TERMINAL.coordinates,
 		],
 		color: "#E70000",

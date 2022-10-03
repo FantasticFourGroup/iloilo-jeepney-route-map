@@ -18,7 +18,7 @@ const storedJeep = sessionStorage.getItem("jeepney");
 
 const jeepObj =
 	storedJeep === null
-		? routes.LAPAZ_TO_FESTIVE
+		? routes.LAPAZ_TO_CITY_PROPER_ROUTE
 		: getJeepRouteByString(storedJeep);
 
 const directions = L.mapquest.directions();
