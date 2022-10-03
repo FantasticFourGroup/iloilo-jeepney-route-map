@@ -6,7 +6,7 @@ import {
 	setMarkerSession,
 } from "./helpers";
 
-const removeRouteMarkers = (response, route) => {
+const removeRouteMarkers = (response, route, color, opacity) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
 
 	const DirectionsLayerWithEmptyMarkers = L.mapquest.DirectionsLayer.extend({
@@ -24,8 +24,8 @@ const removeRouteMarkers = (response, route) => {
 	return new DirectionsLayerWithEmptyMarkers({
 		directionsResponse: response,
 		routeRibbon: {
-			color: route.color,
-			opacity: 1.0,
+			color,
+			opacity,
 			showTraffic: false,
 		},
 	});
@@ -75,7 +75,7 @@ export const createIloiloMap = (map, route) => (error, response) => {
 
 	const markerGroup = L.layerGroup().addTo(map);
 
-	const routeLayer = removeRouteMarkers(response, route);
+	const routeLayer = removeRouteMarkers(response, route, route.color, 1.0);
 	routeLayer.addTo(map);
 
 	const startMarker = createMarker("start", response.route.locations);
@@ -133,4 +133,14 @@ export const createIloiloMap = (map, route) => (error, response) => {
 			`
 		);
 	});
+};
+
+export const createReverseRoute = (map, route) => (error, response) => {
+	const routeLayer = removeRouteMarkers(
+		response,
+		route,
+		route.reverseColor,
+		1.0
+	);
+	routeLayer.addTo(map);
 };

@@ -20,8 +20,14 @@ export const landmarks = {
 	BURGOS_ST: {
 		coordinates: [10.714432220817578, 122.56760206575252],
 	},
+	HUERVANA_EXT: {
+		coordinates: [10.712793458578387, 122.56870764822739],
+	},
 	HUERVANA_ST: {
 		coordinates: [10.710002315221114, 122.56960431178891],
+	},
+	HUERVANA_ST_V2: {
+		coordinates: [10.708369058932227, 122.56780380464207],
 	},
 	BONIFACIO_DR: {
 		coordinates: [10.702416476345652, 122.56809373206555],
@@ -53,6 +59,12 @@ export const landmarks = {
 	BURGOS_ST_V4: {
 		coordinates: [10.711362132614193, 122.57157587060006],
 	},
+	BURGOS_ST_V5: {
+		coordinates: [10.710479571790001, 122.57037990367189],
+	},
+	BURGOS_ST_V6: {
+		coordinates: [10.713539956451909, 122.56814122241306],
+	},
 	UNGKA_TERMINAL: {
 		coordinates: [10.75293276136994, 122.53846748716742],
 	},
@@ -78,10 +90,22 @@ export const landmarks = {
 		coordinates: [10.704360122525255, 122.55519393420805],
 	},
 	SERVICE_RD: {
-		coordinates: [10.709411859948675, 122.55176039130507],
+		coordinates: [10.706726166911325, 122.55244762997886],
 	},
 	PISON_AVE: {
 		coordinates: [10.70404002104515, 122.54407557662977],
+	},
+	MAGDALO_ST: {
+		coordinates: [10.7118576021349, 122.56754237724371],
+	},
+	AIRPORT_RD: {
+		coordinates: [10.724880408406163, 122.54952923226504],
+	},
+	JALANDONI_BRD: {
+		coordinates: [10.702138011706019, 122.56095658562147],
+	},
+	LUNA_ST: {
+		coordinates: [10.709059515621806, 122.56674863887783],
 	},
 };
 
@@ -104,7 +128,12 @@ export const routes = {
 			landmarks.JM_BASA_ST.coordinates,
 			landmarks.GEN_HUGHES_ST.coordinates,
 		],
+		reversePath: [
+			landmarks.GEN_HUGHES_ST.coordinates,
+			landmarks.BALDOZA_TERMINAL.coordinates,
+		],
 		color: "#E70000",
+		reverseColor: "#FFFF00",
 	},
 	BITO_ON_TO_LAPAZ: {
 		name: "BITO-ON - LAPAZ VIA COASTAL LOOP",
@@ -119,21 +148,39 @@ export const routes = {
 		name: "UNGKA - LA PAZ VIA CPU - ISATU LOOP",
 		path: [
 			landmarks.UNGKA_TERMINAL.coordinates,
-			landmarks.BURGOS_ST_V2.coordinates,
+			landmarks.BURGOS_ST_V5.coordinates,
+		],
+		reversePath: [
+			landmarks.BURGOS_ST_V5.coordinates,
+			landmarks.HUERVANA_ST_V2.coordinates,
+			landmarks.BURGOS_ST_V6.coordinates,
+			landmarks.UNGKA_TERMINAL.coordinates,
 		],
 		color: "#EBFF00",
+		reverseColor: "#E70000",
 	},
 	LAPAZ_TO_FESTIVE: {
 		name: "LA PAZ - FESTIVE WALK TRANSPORT HUB VIA NABITASAN LOOP",
 		path: [
 			landmarks.BURGOS_ST_V3.coordinates,
+			landmarks.HUERVANA_EXT.coordinates,
+			landmarks.MAGDALO_ST.coordinates,
 			landmarks.ARROYO_ST.coordinates,
 			landmarks.HECHANOVA_ST.coordinates,
 			landmarks.SERVICE_RD.coordinates,
 			landmarks.PISON_AVE.coordinates,
 			landmarks.FESTIVE_WALK.coordinates,
 		],
+		reversePath: [
+			landmarks.FESTIVE_WALK.coordinates,
+			landmarks.AIRPORT_RD.coordinates,
+			landmarks.SERVICE_RD.coordinates,
+			landmarks.JALANDONI_BRD.coordinates,
+			landmarks.LUNA_ST.coordinates,
+			landmarks.BURGOS_ST_V3.coordinates,
+		],
 		color: "#0dc135",
+		reverseColor: "#0066FF",
 	},
 };
 

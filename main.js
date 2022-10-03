@@ -1,6 +1,6 @@
 import "./style.css";
 import { routes } from "./src/constants";
-import { createIloiloMap } from "./src/configs";
+import { createIloiloMap, createReverseRoute } from "./src/configs";
 import { getJeepRouteByString } from "./src/helpers";
 
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
@@ -18,10 +18,19 @@ const storedJeep = sessionStorage.getItem("jeepney");
 
 const jeepObj =
 	storedJeep === null
-		? routes.LAPAZ_TO_CITY_PROPER_ROUTE
+		? routes.LAPAZ_TO_FESTIVE
 		: getJeepRouteByString(storedJeep);
 
 const directions = L.mapquest.directions();
+
+if ("reversePath" in jeepObj && "reverseColor" in jeepObj) {
+	directions.route(
+		{
+			waypoints: jeepObj.reversePath,
+		},
+		createReverseRoute(map, jeepObj)
+	);
+}
 
 directions.route(
 	{
