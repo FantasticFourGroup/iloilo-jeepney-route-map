@@ -61,6 +61,36 @@ const setupEventButtons = () => {
 			formModal.style.display = "none";
 		}
 	};
+
+	const route1Toggle = document.getElementById("route1-toggle");
+	const route2Toggle = document.getElementById("route2-toggle");
+	const paths = document.getElementsByTagName("path");
+
+	route1Toggle.onclick = () => {
+		if (paths?.[0]) {
+			const pathState = sessionStorage.getItem("route1");
+			if (pathState == "visible") {
+				sessionStorage.setItem("route1", "hidden");
+				paths[0].style.opacity = 0;
+			} else if (pathState == "hidden") {
+				sessionStorage.setItem("route1", "visible");
+				paths[0].style.opacity = 1;
+			}
+		}
+	};
+
+	route2Toggle.onclick = () => {
+		if (paths?.[1]) {
+			const pathState = sessionStorage.getItem("route1");
+			if (pathState == "visible") {
+				sessionStorage.setItem("route1", "hidden");
+				paths[1].style.opacity = 0;
+			} else if (pathState == "hidden") {
+				sessionStorage.setItem("route1", "visible");
+				paths[1].style.opacity = 1;
+			}
+		}
+	};
 };
 
 setupEventButtons();

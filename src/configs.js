@@ -39,6 +39,8 @@ export const setSessionStorage = (name) => {
 	}
 
 	sessionStorage.setItem("fareType", "regular");
+	sessionStorage.setItem("route1", "visible");
+	sessionStorage.setItem("route2", "visible");
 };
 
 export const setDOMActions = (map, routeLayer, markerGroup) => {

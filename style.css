@@ -55,7 +55,7 @@ button.right {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: absolute;
-	bottom: 40%;
+	bottom: 20%;
 	right: 10px;
 	padding: 10px;
 	z-index: 998;
@@ -270,6 +270,10 @@ label:active:after {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.toggle-buttons {
+	margin-top: 15px;
 }
 
 .special-text {
