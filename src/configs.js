@@ -37,6 +37,8 @@ export const setSessionStorage = (name) => {
 		sessionStorage.clear();
 		sessionStorage.setItem("jeepney", name);
 	}
+
+	sessionStorage.setItem("fareType", "regular");
 };
 
 export const setDOMActions = (map, routeLayer, markerGroup) => {
@@ -55,6 +57,15 @@ export const setDOMActions = (map, routeLayer, markerGroup) => {
 
 			window.location.reload();
 		});
+	});
+
+	const fareSwitch = document.getElementById("switch");
+	fareSwitch.addEventListener("change", (event) => {
+		if (event.target.checked) {
+			sessionStorage.setItem("fareType", "special");
+		} else {
+			sessionStorage.setItem("fareType", "regular");
+		}
 	});
 };
 
@@ -109,11 +120,8 @@ export const createIloiloMap = (map, route) => (error, response) => {
 		const endArray = [end.lng, end.lat];
 
 		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
-		const totalFare = getFare(
-			"MOD_PUJ_AIR",
-			"regular",
-			Math.floor(totalDistance)
-		);
+		const fareType = sessionStorage.getItem("fareType");
+		const totalFare = getFare("TRAD_PUJ", fareType, Math.floor(totalDistance));
 		const jeepneyType = sessionStorage.getItem("jeepney");
 
 		document.getElementById("go-button-container").insertAdjacentHTML(
