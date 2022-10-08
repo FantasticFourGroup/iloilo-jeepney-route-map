@@ -26,6 +26,7 @@ export const createMarker = (markerType, locations) => {
 	});
 };
 
+// Function that removes the jeep route details (distance, fare, jeep type)
 export const setupOnClick = () => {
 	if (document.getElementById("details")) {
 		document.getElementById("details").remove();

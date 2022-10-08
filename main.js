@@ -3,8 +3,10 @@ import { routes } from "./src/constants";
 import { createIloiloMap, createReverseRoute } from "./src/configs";
 import { getJeepRouteByString } from "./src/helpers";
 
+// Mapquest api ke
 L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
+// Setup map layer
 const mapLayer = L.mapquest.tileLayer("map");
 
 const map = L.mapquest.map("map", {
@@ -14,8 +16,10 @@ const map = L.mapquest.map("map", {
 	zoomControl: false,
 });
 
+// Get jeep route value from session
 const storedJeep = sessionStorage.getItem("jeepney");
 
+// Get jeep route type
 const jeepObj =
 	storedJeep === null
 		? routes.LAPAZ_TO_CITY_PROPER_ROUTE
@@ -23,6 +27,7 @@ const jeepObj =
 
 const directions = L.mapquest.directions();
 
+// Display reverse route if present
 if ("reversePath" in jeepObj && "reverseColor" in jeepObj) {
 	directions.route(
 		{
@@ -32,6 +37,7 @@ if ("reversePath" in jeepObj && "reverseColor" in jeepObj) {
 	);
 }
 
+// Display forward route
 directions.route(
 	{
 		waypoints: jeepObj.path,
@@ -39,6 +45,7 @@ directions.route(
 	createIloiloMap(map, jeepObj)
 );
 
+// Setup toggle buttons for routes and modal cards
 const setupEventButtons = () => {
 	const leftButton = document.getElementById("left");
 	const rightButton = document.getElementById("right");

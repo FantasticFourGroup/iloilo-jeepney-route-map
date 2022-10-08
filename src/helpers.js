@@ -5,16 +5,23 @@ import { fares, routes } from "./constants";
 
 export const getRouteDistance = (start, end, data) => {
 	setupOnClick();
+
+	// Transform the route points from an array data structure to an object
 	const transformedData = data.map((coord) => point([coord.lng, coord.lat]));
 	const points = featureCollection(transformedData);
+
+	// Get the nearest points in the route based on the marker location
 	const startDetails = nearestPoint(start, points);
 	const endDetails = nearestPoint(end, points);
+
+	// Get the coordinates based on the nearest point in the route from the marker
 	const startIndex = startDetails.properties.featureIndex;
 	const endIndex = endDetails.properties.featureIndex;
 
 	let startPos;
 	let endPos;
 
+	// if location of end coordinate is before start in the array, then swap the values
 	if (endIndex > startIndex) {
 		startPos = startIndex;
 		endPos = endIndex;
@@ -25,6 +32,7 @@ export const getRouteDistance = (start, end, data) => {
 
 	let totalDistance = 0;
 
+	// Add each distances between points in the arrayto get the total distance
 	for (let i = startPos; i < endPos; i++) {
 		const first = point([data[i].lng, data[i].lat]);
 		const second = point([data[i + 1].lng, data[i + 1].lat]);
@@ -117,6 +125,7 @@ export const getJeepRouteByString = (jeepName) => {
 export const getFare = (PUJType, fareType, distance) => {
 	const PUJDetails = getPUJDetails(PUJType);
 	const fareDetails = getFareDetails(fareType, PUJDetails);
+
 	if (distance <= 4 && distance >= 1) {
 		return fareDetails.start;
 	}

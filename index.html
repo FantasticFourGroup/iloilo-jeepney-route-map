@@ -32,6 +32,11 @@
 			<div class="form-title">
 				<h1>Travel</h1>
 			</div>
+			<div class="toggle-class">
+				<h5>Regular</h5>
+				<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+				<h5 class="special-text">Special</h5>
+			</div>
 			<div class="details" id="details">
 				<div class="detail">
 					<b class="distance">Distance: </b>
@@ -45,14 +50,6 @@
 			</div>
 			<div id="go-button-container" class="form-control">
 				<button class="go-button" id="go-button">GO!!!</button>
-			</div>
-			<div class="toggle-buttons">
-				<button type="button" id="route1-toggle" class="left">
-					Reverse Route
-				</button>
-				<button type="button" id="route2-toggle" class="right">
-					Forward Route
-				</button>
 			</div>
 		</div>
 		<div id="jeep-form" class="jeep-form">
@@ -72,10 +69,13 @@
 					<img class="jeep-img" src="/jeep.png" alt="jeep" />
 				</div>
 			</div>
-			<div class="toggle-class">
-				<h5>Regular</h5>
-				<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-				<h5 class="special-text">Special</h5>
+			<div class="toggle-buttons">
+				<button type="button" id="route1-toggle" class="left">
+					Reverse Route
+				</button>
+				<button type="button" id="route2-toggle" class="right">
+					Forward Route
+				</button>
 			</div>
 		</div>
 		<script type="module" src="/main.js"></script>

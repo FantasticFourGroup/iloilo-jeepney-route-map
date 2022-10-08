@@ -6,6 +6,7 @@ import {
 	setMarkerSession,
 } from "./helpers";
 
+// Function that creates a custom route with no waypoint markers
 const removeRouteMarkers = (response, route, color, opacity) => {
 	const icoEmpty = L.icon({ iconUrl: "a" });
 
@@ -31,6 +32,7 @@ const removeRouteMarkers = (response, route, color, opacity) => {
 	});
 };
 
+// Sets initial values for persistent variables which appears even after refresh
 export const setSessionStorage = (name) => {
 	const storedJeep = sessionStorage.getItem("jeepney");
 	if (!storedJeep) {
@@ -43,6 +45,7 @@ export const setSessionStorage = (name) => {
 	sessionStorage.setItem("route2", "visible");
 };
 
+// Sets button onclicks like the choosing jeep routes and fare types
 export const setDOMActions = (map, routeLayer, markerGroup) => {
 	const routeDivs = [
 		"first-route",
@@ -71,6 +74,7 @@ export const setDOMActions = (map, routeLayer, markerGroup) => {
 	});
 };
 
+// Sets the jeep type from session
 export const setDOMValues = () => {
 	const jeepneyType = sessionStorage.getItem("jeepney");
 	const jeepNode = document.getElementById("jeep-type");
@@ -83,23 +87,28 @@ export const setDOMValues = () => {
 	);
 };
 
+// Function that creates the forward map specific to Iloilo
 export const createIloiloMap = (map, route) => (error, response) => {
 	setSessionStorage(route.name);
 
 	const markerGroup = L.layerGroup().addTo(map);
 
+	// Remove current routes when a new map is created
 	const routeLayer = removeRouteMarkers(response, route, route.color, 1.0);
 	routeLayer.addTo(map);
 
+	// Create the start and end markers
 	const startMarker = createMarker("start", response.route.locations);
 	const endMarker = createMarker("end", response.route.locations);
 
 	startMarker.addTo(markerGroup);
 	endMarker.addTo(markerGroup);
 
+	// Save the coordinates of the start and end markers to session
 	setMarkerSession("start", startMarker.getLatLng());
 	setMarkerSession("end", endMarker.getLatLng());
 
+	// Setup movement for start and end marker
 	startMarker.on("moveend", (event) => {
 		const coordinates = event.target._latlng;
 		setMarkerSession("start", coordinates);
@@ -110,9 +119,11 @@ export const createIloiloMap = (map, route) => (error, response) => {
 		setMarkerSession("end", coordinates);
 	});
 
+	// Set ups the jeep route buttons options
 	setDOMValues();
 	setDOMActions(map, routeLayer, markerGroup);
 
+	// Action when pressing the "go button"
 	document.getElementById("go-button").addEventListener("click", (event) => {
 		const start = JSON.parse(sessionStorage.getItem("start"));
 		const end = JSON.parse(sessionStorage.getItem("end"));
@@ -121,11 +132,13 @@ export const createIloiloMap = (map, route) => (error, response) => {
 		const startArray = [start.lng, start.lat];
 		const endArray = [end.lng, end.lat];
 
+		// Calculate the total fare and save the jeep type to session
 		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
 		const fareType = sessionStorage.getItem("fareType");
 		const totalFare = getFare("TRAD_PUJ", fareType, Math.floor(totalDistance));
 		const jeepneyType = sessionStorage.getItem("jeepney");
 
+		// Setup the values for distance, fare, and jeep type
 		document.getElementById("go-button-container").insertAdjacentHTML(
 			"beforebegin",
 			/*html*/ `
@@ -145,6 +158,7 @@ export const createIloiloMap = (map, route) => (error, response) => {
 	});
 };
 
+// Create reverse route
 export const createReverseRoute = (map, route) => (error, response) => {
 	const routeLayer = removeRouteMarkers(
 		response,
