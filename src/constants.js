@@ -1,3 +1,4 @@
+// Coordinates for particular landmarks used for routes
 export const landmarks = {
 	GEN_HUGHES_ST: {
 		coordinates: [10.68845840453183, 122.57971679879475],
@@ -121,6 +122,8 @@ export const landmarks = {
 	},
 };
 
+// Route object with details
+// path and reversedPath is based on points of interest
 export const routes = {
 	LAPAZ_TO_CITY_PROPER_ROUTE: {
 		name: "LA PAZ - ILOILO CITY PROPER VIA ISATU",
@@ -146,8 +149,8 @@ export const routes = {
 			landmarks.BONIFACIO_DR_V2.coordinates,
 			landmarks.BALDOZA_TERMINAL.coordinates,
 		],
-		color: "#E70000",
-		reverseColor: "#FFFF00",
+		color: "#e72a00",
+		reverseColor: "#e70000",
 	},
 	BITO_ON_TO_LAPAZ: {
 		name: "BITO-ON - LAPAZ VIA COASTAL LOOP",
@@ -156,7 +159,7 @@ export const routes = {
 			landmarks.BURGOS_ST_V2.coordinates,
 			landmarks.BURGOS_ST_V3.coordinates,
 		],
-		color: "#0066FF",
+		color: "#0066ff",
 	},
 	UNGKA_TO_LAPAZ: {
 		name: "UNGKA - LA PAZ VIA CPU - ISATU LOOP",
@@ -170,8 +173,8 @@ export const routes = {
 			landmarks.BURGOS_ST_V6.coordinates,
 			landmarks.UNGKA_TERMINAL.coordinates,
 		],
-		color: "#EBFF00",
-		reverseColor: "#E70000",
+		color: "#ebff00",
+		reverseColor: "#9ca626",
 	},
 	LAPAZ_TO_FESTIVE: {
 		name: "LA PAZ - FESTIVE WALK TRANSPORT HUB VIA NABITASAN LOOP",
@@ -194,11 +197,12 @@ export const routes = {
 			landmarks.BURGOS_ST_V3.coordinates,
 		],
 		color: "#0dc135",
-		reverseColor: "#0066FF",
+		reverseColor: "#064f16",
 	},
 };
 
 export const fares = {
+	// Traditional PUJ
 	TRAD_PUJ: {
 		regular: {
 			start: 11.0,
@@ -206,10 +210,11 @@ export const fares = {
 		},
 		special: {
 			start: 8.75,
-			increment: 1.2,
+			increment: 1.25,
 		},
-		limit: 18,
 	},
+
+	// Modified PUJ with Aircon
 	MOD_PUJ_AIR: {
 		regular: {
 			start: 13.0,
@@ -219,8 +224,9 @@ export const fares = {
 			start: 10.5,
 			increment: 1.44,
 		},
-		limit: 18,
 	},
+
+	// Modified PUJ without Aircon
 	MOD_PUJ_NON_AIR: {
 		regular: {
 			start: 13.0,
@@ -230,6 +236,5 @@ export const fares = {
 			start: 10.5,
 			increment: 1.2,
 		},
-		limit: 18,
 	},
 };
