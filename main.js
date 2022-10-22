@@ -4,8 +4,7 @@ import { createIloiloMap, createReverseRoute } from "./src/configs";
 import { getJeepRouteByString } from "./src/helpers";
 
 // Mapquest api ke
-// L.mapquest.key = import.meta.env.VITE_MQ_KEY;
-L.mapquest.key = "NONE"
+L.mapquest.key = import.meta.env.VITE_MQ_KEY;
 
 // Setup map layer
 const mapLayer = L.mapquest.tileLayer("map");
