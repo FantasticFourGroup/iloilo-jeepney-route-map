@@ -31,7 +31,7 @@ const directions = L.mapquest.directions();
 if ("reversePath" in jeepObj && "reverseColor" in jeepObj) {
 	directions.route(
 		{
-			waypoints: jeepObj.reversePath,
+			locations: jeepObj.reversePath,
 		},
 		createReverseRoute(map, jeepObj)
 	);
@@ -40,7 +40,7 @@ if ("reversePath" in jeepObj && "reverseColor" in jeepObj) {
 // Display forward route
 directions.route(
 	{
-		waypoints: jeepObj.path,
+		locations: jeepObj.path,
 	},
 	createIloiloMap(map, jeepObj)
 );
