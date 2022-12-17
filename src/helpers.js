@@ -92,6 +92,37 @@ export const getJeepRouteName = (divName) => {
 	}
 };
 
+// function to return the forward and backward route of the jeepney given the jeepney name
+export const getJeepRouteNameByString = (jeepName) => {
+	switch (jeepName) {
+		case "first-route":
+			return {
+				forward: "Lapaz - Iloilo City Proper",
+				backward: "Iloilo City Proper - Lapaz",
+			};
+		case "second-route":
+			return {
+				forward: "Bito-on - Lapaz",
+				backward: "Lapaz - Bito-on",
+			};
+		case "third-route":
+			return {
+				forward: "Ungka - Lapaz",
+				backward: "Lapaz - Ungka",
+			};
+		case "fourth-route":
+			return {
+				forward: "Lapaz - Festive Walk Transport Hub",
+				backward: "Festive Walk Transport Hub - Lapaz",
+			};
+		default:
+			return {
+				forward: "Lapaz - Iloilo City Proper",
+				backward: "Iloilo City Proper - Lapaz",
+			};
+	}
+};
+
 export const getJeepRoute = (divName) => {
 	switch (divName) {
 		case "first-route":

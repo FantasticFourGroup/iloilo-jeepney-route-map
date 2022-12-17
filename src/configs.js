@@ -4,6 +4,7 @@ import {
 	getFare,
 	getJeepRoute,
 	setMarkerSession,
+	getJeepRouteNameByString,
 } from "./helpers";
 
 // Function that creates a custom route with no waypoint markers
@@ -43,6 +44,8 @@ export const setSessionStorage = (name) => {
 	sessionStorage.setItem("fareType", "regular");
 	sessionStorage.setItem("route1", "visible");
 	sessionStorage.setItem("route2", "visible");
+	sessionStorage.setItem("forward", "Lapaz - Iloilo City Proper");
+	sessionStorage.setItem("backward", "Iloilo City Proper - Lapaz");
 };
 
 // Sets button onclicks like the choosing jeep routes and fare types
@@ -58,7 +61,10 @@ export const setDOMActions = (map, routeLayer, markerGroup) => {
 		document.getElementById(routeDiv).addEventListener("click", (event) => {
 			const jeepRoute = getJeepRoute(routeDiv);
 			const jeepneyType = jeepRoute.name;
+			const routeName = getJeepRouteNameByString(routeDiv);
 			sessionStorage.setItem("jeepney", jeepneyType);
+			sessionStorage.setItem("forward", routeName.forward);
+			sessionStorage.setItem("backward", routeName.backward);
 
 			window.location.reload();
 		});

@@ -18,6 +18,12 @@ const map = L.mapquest.map("map", {
 
 // Get jeep route value from session
 const storedJeep = sessionStorage.getItem("jeepney");
+const forwardText = sessionStorage.getItem("forward");
+const backwardText = sessionStorage.getItem("backward");
+
+// Change current text of forward and backward route button
+document.getElementById("route1-toggle").innerHTML = forwardText;
+document.getElementById("route2-toggle").innerHTML = backwardText;
 
 // Get jeep route type
 const jeepObj =
