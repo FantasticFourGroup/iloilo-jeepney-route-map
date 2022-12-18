@@ -14,6 +14,15 @@ export const getRouteDistance = (start, end, data) => {
 	const startDetails = nearestPoint(start, points);
 	const endDetails = nearestPoint(end, points);
 
+	// get the distance between the marker and the nearest point in the route
+	const startDistance = distance(start, startDetails);
+	const endDistance = distance(end, endDetails);
+
+	// if the distance is greater than 1km, throw an error
+	if (startDistance > 0.1 || endDistance > 0.1) {
+		throw new Error("Marker is too far from the route");
+	}
+
 	// Get the coordinates based on the nearest point in the route from the marker
 	const startIndex = startDetails.properties.featureIndex;
 	const endIndex = endDetails.properties.featureIndex;

@@ -131,36 +131,46 @@ export const createIloiloMap = (map, route) => (error, response) => {
 
 	// Action when pressing the "go button"
 	document.getElementById("go-button").addEventListener("click", (event) => {
-		const start = JSON.parse(sessionStorage.getItem("start"));
-		const end = JSON.parse(sessionStorage.getItem("end"));
-		const { shapePoints } = response.route.shape;
+		try {
+			const start = JSON.parse(sessionStorage.getItem("start"));
+			const end = JSON.parse(sessionStorage.getItem("end"));
+			const { shapePoints } = response.route.shape;
 
-		const startArray = [start.lng, start.lat];
-		const endArray = [end.lng, end.lat];
+			const startArray = [start.lng, start.lat];
+			const endArray = [end.lng, end.lat];
 
-		// Calculate the total fare and save the jeep type to session
-		const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
-		const fareType = sessionStorage.getItem("fareType");
-		const totalFare = getFare("TRAD_PUJ", fareType, Math.floor(totalDistance));
-		const jeepneyType = sessionStorage.getItem("jeepney");
+			// Calculate the total fare and save the jeep type to session
+			const totalDistance = getRouteDistance(startArray, endArray, shapePoints);
+			const fareType = sessionStorage.getItem("fareType");
+			const totalFare = getFare(
+				"TRAD_PUJ",
+				fareType,
+				Math.floor(totalDistance)
+			);
+			const jeepneyType = sessionStorage.getItem("jeepney");
 
-		// Setup the values for distance, fare, and jeep type
-		document.getElementById("go-button-container").insertAdjacentHTML(
-			"beforebegin",
-			/*html*/ `
-				<div id="details">
-					<div class="detail">
-						<b class="distance">Distance: </b> ${Math.round(totalDistance * 100) / 100}
+			// Setup the values for distance, fare, and jeep type
+			document.getElementById("go-button-container").insertAdjacentHTML(
+				"beforebegin",
+				/*html*/ `
+					<div id="details">
+						<div class="detail">
+							<b class="distance">Distance: </b> ${Math.round(totalDistance * 100) / 100}
+						</div>
+						<div class="detail">
+							<b class="fare">Fare: </b> ${totalFare}
+						</div>
+						<div class="detail" id="jeep-type">
+							<b class="jeep-type">Jeepney: </b> ${jeepneyType}
+						</div>
 					</div>
-					<div class="detail">
-						<b class="fare">Fare: </b> ${totalFare}
-					</div>
-					<div class="detail" id="jeep-type">
-						<b class="jeep-type">Jeepney: </b> ${jeepneyType}
-					</div>
-				</div>
-			`
-		);
+				`
+			);
+		} catch (error) {
+			if (error.message === "Marker is too far from the route") {
+				alert("Marker is too far from the route");
+			}
+		}
 	});
 };
 
