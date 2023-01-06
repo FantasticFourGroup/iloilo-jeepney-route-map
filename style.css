@@ -142,6 +142,11 @@ button.right {
 	border-radius: 5px;
 }
 
+.help-text {
+	text-decoration: none;
+	color: white;
+}
+
 .select-title {
 	font-size: 17px;
 }
