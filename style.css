@@ -83,8 +83,7 @@ button.right {
 
 .form-control {
 	display: flex;
-	align-items: center;
-	margin: 5px auto;
+	justify-content: space-between;
 }
 
 .input-control {
@@ -116,6 +115,21 @@ button.right {
 
 .go-button {
 	background-color: #0dc135;
+	margin-top: 10px;
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.help-button {
+	/* background is kinday blue */
+	background-color: #0096ff;
 	margin-top: 10px;
 	border: none;
 	color: white;

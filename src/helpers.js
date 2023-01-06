@@ -6,20 +6,46 @@ import { fares, routes } from "./constants";
 export const getRouteDistance = (start, end, data) => {
 	setupOnClick();
 
+	// Get reversed points from sessionStorage
+	const reversedShapePoints = JSON.parse(
+		sessionStorage.getItem("reversedShapePoints")
+	);
+
 	// Transform the route points from an array data structure to an object
 	const transformedData = data.map((coord) => point([coord.lng, coord.lat]));
 	const points = featureCollection(transformedData);
+
+	const transformedReversedData = reversedShapePoints.map((coord) =>
+		point([coord.lng, coord.lat])
+	);
+	const reversedPoints = featureCollection(transformedReversedData);
 
 	// Get the nearest points in the route based on the marker location
 	const startDetails = nearestPoint(start, points);
 	const endDetails = nearestPoint(end, points);
 
+	const reversedStartDetails = nearestPoint(start, reversedPoints);
+	const reversedEndDetails = nearestPoint(end, reversedPoints);
+
 	// get the distance between the marker and the nearest point in the route
 	const startDistance = distance(start, startDetails);
 	const endDistance = distance(end, endDetails);
 
+	const reversedStartDistance = distance(start, reversedStartDetails);
+	const reversedEndDistance = distance(end, reversedEndDetails);
+
+	console.log(
+		startDistance,
+		endDistance,
+		reversedStartDistance,
+		reversedEndDistance
+	);
+
 	// if the distance is greater than 1km, throw an error
-	if (startDistance > 0.1 || endDistance > 0.1) {
+	if (
+		(startDistance > 0.1 || endDistance > 0.1) &&
+		(reversedStartDistance > 0.1 || reversedEndDistance > 0.1)
+	) {
 		throw new Error("Marker is too far from the route");
 	}
 

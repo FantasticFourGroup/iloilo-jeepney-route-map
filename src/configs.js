@@ -183,4 +183,8 @@ export const createReverseRoute = (map, route) => (error, response) => {
 		1.0
 	);
 	routeLayer.addTo(map);
+
+	const { shapePoints } = response.route.shape;
+
+	sessionStorage.setItem("reversedShapePoints", JSON.stringify(shapePoints));
 };
