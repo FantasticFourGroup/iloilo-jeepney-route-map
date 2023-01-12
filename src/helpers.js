@@ -34,13 +34,6 @@ export const getRouteDistance = (start, end, data) => {
 	const reversedStartDistance = distance(start, reversedStartDetails);
 	const reversedEndDistance = distance(end, reversedEndDetails);
 
-	console.log(
-		startDistance,
-		endDistance,
-		reversedStartDistance,
-		reversedEndDistance
-	);
-
 	// if the distance is greater than 1km, throw an error
 	if (
 		(startDistance > 0.1 || endDistance > 0.1) &&

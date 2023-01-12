@@ -2,85 +2,42 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/jeep.png" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/jeep.png" />
 		<title>Jeepney Fare Calculator</title>
-		<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
-		<script src="https://unpkg.com/leaflet-draw@0.4.13/dist/leaflet.draw.js"></script>
 		<link
-			type="text/css"
 			rel="stylesheet"
-			href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"
+		></script>
+		<link
+			href="https://fonts.googleapis.com/css?family=Poppins"
+			rel="stylesheet"
 		/>
 		<link
-			type="text/css"
 			rel="stylesheet"
-			href="https://unpkg.com/leaflet-draw@0.4.13/dist/leaflet.draw.css"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
 		/>
+		<link rel="stylesheet" href="/help.css" />
 	</head>
 	<body>
-		<div id="map"></div>
-		<div class="button-group">
-			<div class="button-container">
-				<button type="button" id="left" class="left">Toggle Jeep Select</button>
-				<button type="button" id="right" class="right">
-					Toggle Travel Modal
-				</button>
-			</div>
-		</div>
-		<div id="form-modal" class="form-block">
-			<div class="form-title">
-				<h1>Travel</h1>
-			</div>
-			<div class="toggle-class">
-				<h5>Regular</h5>
-				<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-				<h5 class="special-text">Special</h5>
-			</div>
-			<div class="details" id="details">
-				<div class="detail">
-					<b class="distance">Distance: </b>
-				</div>
-				<div class="detail">
-					<b class="fare">Fare: </b>
-				</div>
-				<div class="detail" id="jeep-type">
-					<b class="jeep-type">Jeepney: </b>
-				</div>
-			</div>
-			<div id="go-button-container" class="form-control">
-				<button class="go-button" id="go-button">GO!!!</button>
-				<button class="help-button" id="help-button">
-					<a class="help-text" href="help.html" target="_self">Help</a>
-				</button>
-			</div>
-		</div>
-		<div id="jeep-form" class="jeep-form">
-			<h3 class="select-title">View Jeepney Routes</h3>
-			<h4 class="select-subtitle">Select a Jeepney</h4>
-			<div class="jeep-select">
-				<div class="hoverable first-route" id="first-route">
-					<img class="jeep-img" src="/jeep.png" alt="jeep" />
-				</div>
-				<div class="hoverable second-route" id="second-route">
-					<img class="jeep-img" src="/jeep.png" alt="jeep" />
-				</div>
-				<div class="hoverable third-route" id="third-route">
-					<img class="jeep-img" src="/jeep.png" alt="jeep" />
-				</div>
-				<div class="hoverable fourth-route" id="fourth-route">
-					<img class="jeep-img" src="/jeep.png" alt="jeep" />
-				</div>
-			</div>
-			<div class="toggle-buttons">
-				<button type="button" id="route2-toggle" class="left">
-					Forward Route
-				</button>
-				<button type="button" id="route1-toggle" class="right">
-					Reverse Route
-				</button>
-			</div>
-		</div>
-		<script type="module" src="/main.js"></script>
+		<script type="module" src="/help.js"></script>
 	</body>
 </html>
